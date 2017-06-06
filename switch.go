@@ -2,24 +2,24 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
-	"encoding/json"
 )
 
 var address string
-var token   string
+var token string
 
 type LampState struct {
-	On					bool		`json:"on"`
-	Brightness	int			`json:"bri"`
-	Alert				string	`json:"alert"`
-	Reachable		bool		`json:"reachable"`
+	On         bool   `json:"on"`
+	Brightness int    `json:"bri"`
+	Alert      string `json:"alert"`
+	Reachable  bool   `json:"reachable"`
 }
 
 type Lamp struct {
-	State	LampState	`json:"state"`
+	State LampState `json:"state"`
 }
 
 func baseUrl() (baseUrl string) {
