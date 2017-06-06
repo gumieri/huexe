@@ -11,6 +11,10 @@ import (
 var address string
 var token string
 
+type LampPutState struct {
+	On bool `json:"on"`
+}
+
 type LampState struct {
 	On         bool   `json:"on"`
 	Brightness int    `json:"bri"`
@@ -45,7 +49,10 @@ func getLamp(lampId int) (lamp *Lamp, err error) {
 func putLamp(lampId int, lamp *Lamp) (err error) {
 	url := fmt.Sprintf("%s/lights/%d/state", baseUrl(), lampId)
 
-	marshal, err := json.Marshal(lamp)
+	lampPutState := new(LampPutState)
+	lampPutState.On = lamp.State.On
+
+	marshal, err := json.Marshal(lampPutState)
 
 	if err != nil {
 		return
