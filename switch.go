@@ -4,10 +4,12 @@ import (
 	"bytes"
 	"fmt"
 	"log"
-	"os"
 	"net/http"
 	"encoding/json"
 )
+
+var address string
+var token   string
 
 type LampState struct {
 	On					bool		`json:"on"`
@@ -21,9 +23,6 @@ type Lamp struct {
 }
 
 func baseUrl() (baseUrl string) {
-	token := os.Getenv("HUE_TOKEN")
-	address := os.Getenv("HUE_ADDRESS")
-
 	return fmt.Sprintf("http://%s/api/%s", address, token)
 }
 
