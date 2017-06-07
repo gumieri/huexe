@@ -11,27 +11,16 @@ import (
 var address string
 var token string
 
-type LampPutState struct {
-	On bool `json:"on"`
-}
-
 type LampState struct {
-	On         bool   `json:"on"`
-	Brightness int    `json:"bri"`
-	Alert      string `json:"alert"`
-	Reachable  bool   `json:"reachable"`
+	On bool `json:"on"`
 }
 
 type Lamp struct {
 	State LampState `json:"state"`
 }
 
-func baseUrl() (baseUrl string) {
-	return fmt.Sprintf("http://%s/api/%s", address, token)
-}
-
 func getLamp(lampId int) (lamp *Lamp, err error) {
-	url := fmt.Sprintf("%s/lights/%d", baseUrl(), lampId)
+	url := fmt.Sprintf("http://%s/api/%s/lights/%d", address, token, lampId)
 	response, err := http.Get(url)
 
 	if err != nil {
@@ -47,12 +36,9 @@ func getLamp(lampId int) (lamp *Lamp, err error) {
 }
 
 func putLamp(lampId int, lamp *Lamp) (err error) {
-	url := fmt.Sprintf("%s/lights/%d/state", baseUrl(), lampId)
+	url := fmt.Sprintf("http://%s/api/%s/lights/%d/state", address, token, lampId)
 
-	lampPutState := new(LampPutState)
-	lampPutState.On = lamp.State.On
-
-	marshal, err := json.Marshal(lampPutState)
+	marshal, err := json.Marshal(lamp.State)
 
 	if err != nil {
 		return
