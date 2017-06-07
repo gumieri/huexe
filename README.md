@@ -2,6 +2,8 @@
 
 A group of executables to turn On / Off (`cmd/switch`) and Dim (`cmd/dimmer`) / Bright (`cmd/brighter`) a specific Philips Hue Lamp.
 
+For now only the `cmd/switch` is implemented and the lampID is hardcoded as `1` just because of laziness.
+
 # build
 
 ```bash
