@@ -4,12 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/spf13/viper"
 	"log"
 	"net/http"
 )
-
-var address string
-var token string
 
 type LampState struct {
 	On bool `json:"on"`
@@ -19,12 +17,12 @@ type Lamp struct {
 	State LampState `json:"state"`
 }
 
-func getLamp(lampId int) (lamp *Lamp, err error) {
-	url := fmt.Sprintf("http://%s/api/%s/lights/%d", address, token, lampId)
+func getLamp(id int, address string, username string) (lamp *Lamp, err error) {
+	url := fmt.Sprintf("http://%s/api/%s/lights/%d", address, username, id)
 	response, err := http.Get(url)
 
 	if err != nil {
-		return
+		return nil, err
 	}
 
 	defer response.Body.Close()
@@ -32,35 +30,50 @@ func getLamp(lampId int) (lamp *Lamp, err error) {
 	lamp = new(Lamp)
 	err = json.NewDecoder(response.Body).Decode(lamp)
 
+	if err != nil {
+		return nil, err
+	}
+
 	return
 }
 
-func putLamp(lampId int, lamp *Lamp) (err error) {
-	url := fmt.Sprintf("http://%s/api/%s/lights/%d/state", address, token, lampId)
+func putLamp(id int, address string, username string, lamp *Lamp) (err error) {
+	url := fmt.Sprintf("http://%s/api/%s/lights/%d/state", address, username, id)
 
 	marshal, err := json.Marshal(lamp.State)
 
 	if err != nil {
-		return
+		return err
 	}
 
 	request, err := http.NewRequest(http.MethodPut, url, bytes.NewBuffer(marshal))
 
 	if err != nil {
-		return
+		return err
 	}
 
 	client := &http.Client{}
 
 	_, err = client.Do(request)
 
+	if err != nil {
+		return err
+	}
+
 	return
 }
 
 func main() {
-	lampId := 1
+	viper.SetConfigName("config")
+	viper.AddConfigPath(".")
 
-	lamp, err := getLamp(lampId)
+	err := viper.ReadInConfig()
+
+	address := viper.GetString("address")
+	username := viper.GetString("username")
+	id := viper.GetInt("id")
+
+	lamp, err := getLamp(id, address, username)
 
 	if err != nil {
 		log.Fatal(err)
@@ -69,9 +82,10 @@ func main() {
 
 	lamp.State.On = !lamp.State.On
 
-	err = putLamp(lampId, lamp)
+	err = putLamp(id, address, username, lamp)
 
 	if err != nil {
 		log.Fatal(err)
+		return
 	}
 }
