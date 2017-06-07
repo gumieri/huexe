@@ -13,3 +13,7 @@ id: 1
 address: 192.168.1.2
 username: 249ba36000029bbe97499c03db5a9001f6b734ec
 ```
+
+# Code Status
+
+[![Build Status](https://travis-ci.org/gumieri/huexe.svg?branch=master)](https://travis-ci.org/gumieri/huexe)
