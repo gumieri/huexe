@@ -1,0 +1,21 @@
+language: go
+
+go:
+  - 1.8.x
+
+install:
+  - go get github.com/spf13/viper
+
+script:
+  - ./build
+
+deploy:  
+  provider: releases
+  skip_cleanup: true
+  file:
+    - switch.exe
+    - dimmer.exe
+    - brighter.exe
+  on:
+    repo: gumieri/huexe
+    tags: true
