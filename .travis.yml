@@ -1,21 +1,19 @@
 language: go
-
 go:
-  - 1.8.x
-
+- 1.8.x
 install:
-  - go get github.com/spf13/viper
-
+- go get github.com/spf13/viper
 script:
-  - ./build
-
-deploy:  
+- "./build"
+deploy:
   provider: releases
+  api_key:
+    secure: epEwMIc5lW4dl+SLSCnRJ7Zr9U6m+4DeQ1iqcMWVaia8p5rSP2ewBDAr5HKy7TcTIuWIm3hhW6OcEasU0IJt2Er81/E6ONF+o8huxJnDU8BsmULid3kuovzwmbZkeglo6yiiW32jHlh710Tch9CTCicDA9aOD3COM92cDQj9CkqygZl304kuVYWCjIMdAk/ql08yYXgWPTMDhRfd3abfyNUKHTdHGPQPvIEmh2JJ0FEsyr52PHXNs+u+nt5fcb/bU0pD+nLmBwtSYPkuirR6iJxNRVLp32CzAel3uSW0BB+nkihTUsdY4NwDOeGevAJr3IGnPf3RTVL06KpEjG8sRC3veBaVOlcE7wxMsQV2GLlsxvvvEh4H63RXevJ9Zq+1p6FD1SIzpSLafBbAualM56KBHPAxmdYlgi+y9M/BZAP11P0vW1ISZnpCSOIC/qtvAHWOJtlfgRk7Rt0Utleatjh6XBgjt9Cpf5O7CzLNpUXB70ta/CktpQgDa5gnneBwJa123LhXm5DhWA+V18N6TvIIjyC/d198gwADl1rNG/XmbVROVv5otaXXjBvR4JEa5bxrSi3LNo1Z0V09O0+r5PUqUNySUdF8aTr9KL536uGUmLHpMHrkNUo7wa++3iANpx+29PFdWaD1bgnmLeKhTEvacZh0FpH1xuRomxVHiBA=
   skip_cleanup: true
   file:
-    - switch.exe
-    - dimmer.exe
-    - brighter.exe
+    - release/win-amd64/switch.exe
+    - release/win-amd64/dimmer.exe
+    - release/win-amd64/brighter.exe
   on:
     repo: gumieri/huexe
     tags: true
