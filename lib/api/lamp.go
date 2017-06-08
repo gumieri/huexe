@@ -24,12 +24,16 @@ type Lamp struct {
 // address refers to the bridge IP Address, the API Address
 // username refers to a hash key/token generated from the API when registered a device/user
 // It returns a Lamp with the current State
-func GetLamp(id int, address string, username string) (lamp *Lamp, err error) {
+func GetLamp(config Config) (lamp *Lamp, err error) {
+	id := config.Id
+	address := config.Address
+	username := config.Username
+
 	url := fmt.Sprintf("http://%s/api/%s/lights/%d", address, username, id)
 	response, err := http.Get(url)
 
 	if err != nil {
-		return nil, err
+		return
 	}
 
 	defer response.Body.Close()
@@ -38,7 +42,7 @@ func GetLamp(id int, address string, username string) (lamp *Lamp, err error) {
 	err = json.NewDecoder(response.Body).Decode(lamp)
 
 	if err != nil {
-		return nil, err
+		return
 	}
 
 	return
@@ -48,19 +52,23 @@ func GetLamp(id int, address string, username string) (lamp *Lamp, err error) {
 // id refers to the Lamp ID from the API
 // address refers to the bridge IP Address, the API Address
 // username refers to a hash key/token generated from the API when registered a device/user
-func PutLamp(id int, address string, username string, lamp *Lamp) (err error) {
-	url := fmt.Sprintf("http://%s/api/%s/lights/%d/state", address, username, id)
-
+func PutLamp(config Config, lamp *Lamp) (err error) {
 	marshal, err := json.Marshal(lamp.State)
 
 	if err != nil {
-		return err
+		return
 	}
+
+	id := config.Id
+	address := config.Address
+	username := config.Username
+
+	url := fmt.Sprintf("http://%s/api/%s/lights/%d/state", address, username, id)
 
 	request, err := http.NewRequest(http.MethodPut, url, bytes.NewBuffer(marshal))
 
 	if err != nil {
-		return err
+		return
 	}
 
 	client := &http.Client{}
@@ -68,7 +76,7 @@ func PutLamp(id int, address string, username string, lamp *Lamp) (err error) {
 	_, err = client.Do(request)
 
 	if err != nil {
-		return err
+		return
 	}
 
 	return
