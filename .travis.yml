@@ -11,18 +11,14 @@ deploy:
     secure: epEwMIc5lW4dl+SLSCnRJ7Zr9U6m+4DeQ1iqcMWVaia8p5rSP2ewBDAr5HKy7TcTIuWIm3hhW6OcEasU0IJt2Er81/E6ONF+o8huxJnDU8BsmULid3kuovzwmbZkeglo6yiiW32jHlh710Tch9CTCicDA9aOD3COM92cDQj9CkqygZl304kuVYWCjIMdAk/ql08yYXgWPTMDhRfd3abfyNUKHTdHGPQPvIEmh2JJ0FEsyr52PHXNs+u+nt5fcb/bU0pD+nLmBwtSYPkuirR6iJxNRVLp32CzAel3uSW0BB+nkihTUsdY4NwDOeGevAJr3IGnPf3RTVL06KpEjG8sRC3veBaVOlcE7wxMsQV2GLlsxvvvEh4H63RXevJ9Zq+1p6FD1SIzpSLafBbAualM56KBHPAxmdYlgi+y9M/BZAP11P0vW1ISZnpCSOIC/qtvAHWOJtlfgRk7Rt0Utleatjh6XBgjt9Cpf5O7CzLNpUXB70ta/CktpQgDa5gnneBwJa123LhXm5DhWA+V18N6TvIIjyC/d198gwADl1rNG/XmbVROVv5otaXXjBvR4JEa5bxrSi3LNo1Z0V09O0+r5PUqUNySUdF8aTr9KL536uGUmLHpMHrkNUo7wa++3iANpx+29PFdWaD1bgnmLeKhTEvacZh0FpH1xuRomxVHiBA=
   skip_cleanup: true
   file:
-    - release/linux-amd64_brighter
-    - release/linux-amd64_dimmer
-    - release/linux-amd64_switch
-    - release/osx-amd64_brighter
-    - release/osx-amd64_dimmer
-    - release/osx-amd64_switch
-    - release/win-386_brighter.exe
-    - release/win-386_dimmer.exe
-    - release/win-386_switch.exe
-    - release/win-amd64_brighter.exe
-    - release/win-amd64_dimmer.exe
-    - release/win-amd64_switch.exe
+    - release/win-386/huexe_win-386.zip
+    - release/win-386/huexe_win-386.tar.gz
+    - release/win-amd64/huexe_win-amd64.zip
+    - release/win-amd64/huexe_win-amd64.tar.gz
+    - release/osx-amd64/huexe_osx-amd64.zip
+    - release/osx-amd64/huexe_osx-amd64.tar.gz
+    - release/linux-amd64/huexe_linux-amd64.zip
+    - release/linux-amd64/huexe_linux-amd64.tar.gz
   on:
     repo: gumieri/huexe
     tags: true
