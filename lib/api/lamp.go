@@ -7,16 +7,23 @@ import (
 	"net/http"
 )
 
+// LampState represents the State of a Hue Lamp from the API
 type LampState struct {
 	On         bool `json:"on"`
 	Brightness int  `json:"bri"`
 	Reachable  bool `json:"reachable"`
 }
 
+// Lamp hold informations of a Hue Lamp from the API
 type Lamp struct {
 	State LampState `json:"state"`
 }
 
+// GetLamp request to the API for informations about a Hue Lamp
+// id refers to the Lamp ID from the API
+// address refers to the bridge IP Address, the API Address
+// username refers to a hash key/token generated from the API when registered a device/user
+// It returns a Lamp with the current State
 func GetLamp(id int, address string, username string) (lamp *Lamp, err error) {
 	url := fmt.Sprintf("http://%s/api/%s/lights/%d", address, username, id)
 	response, err := http.Get(url)
@@ -37,6 +44,10 @@ func GetLamp(id int, address string, username string) (lamp *Lamp, err error) {
 	return
 }
 
+// PutLamp update the State of a Hue Lamp using the API
+// id refers to the Lamp ID from the API
+// address refers to the bridge IP Address, the API Address
+// username refers to a hash key/token generated from the API when registered a device/user
 func PutLamp(id int, address string, username string, lamp *Lamp) (err error) {
 	url := fmt.Sprintf("http://%s/api/%s/lights/%d/state", address, username, id)
 
