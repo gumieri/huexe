@@ -19,6 +19,7 @@ username: 249ba36000029bbe97499c03db5a9001f6b734ec
 
 ## Code Status
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/gumieri/huexe)](https://goreportcard.com/report/github.com/gumieri/huexe)
 [![Build Status](https://travis-ci.org/gumieri/huexe.svg?branch=master)](https://travis-ci.org/gumieri/huexe)
 
 
