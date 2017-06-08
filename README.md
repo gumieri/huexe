@@ -20,3 +20,8 @@ username: 249ba36000029bbe97499c03db5a9001f6b734ec
 ## Code Status
 
 [![Build Status](https://travis-ci.org/gumieri/huexe.svg?branch=master)](https://travis-ci.org/gumieri/huexe)
+
+
+## License
+
+Huexe is released under the [MIT License](http://www.opensource.org/licenses/MIT).
