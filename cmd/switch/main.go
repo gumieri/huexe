@@ -2,21 +2,15 @@ package main
 
 import (
 	"github.com/gumieri/huexe/lib/api"
-	"github.com/spf13/viper"
 	"log"
 )
 
 func main() {
-	viper.SetConfigName("config")
-	viper.AddConfigPath(".")
+	var err error
 
-	err := viper.ReadInConfig()
+	config, err := api.GetConfig()
 
-	address := viper.GetString("address")
-	username := viper.GetString("username")
-	id := viper.GetInt("id")
-
-	lamp, err := api.GetLamp(id, address, username)
+	lamp, err := api.GetLamp(config)
 
 	if err != nil {
 		log.Fatal(err)
@@ -25,7 +19,7 @@ func main() {
 
 	lamp.State.On = !lamp.State.On
 
-	err = api.PutLamp(id, address, username, lamp)
+	err = api.PutLamp(config, lamp)
 
 	if err != nil {
 		log.Fatal(err)
