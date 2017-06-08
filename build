@@ -1,5 +1,17 @@
 #!/bin/bash
 
-GOOS=windows GOARCH=amd64 go build -o release/win-amd64/switch.exe --ldflags="-H windowsgui" ./cmd/switch
-GOOS=windows GOARCH=amd64 go build -o release/win-amd64/dimmer.exe --ldflags="-H windowsgui" ./cmd/dimmer
-GOOS=windows GOARCH=amd64 go build -o release/win-amd64/brighter.exe --ldflags="-H windowsgui" ./cmd/brighter
+GOOS=windows GOARCH=amd64 go build -o release/win-amd64_switch.exe --ldflags="-H windowsgui" ./cmd/switch
+GOOS=windows GOARCH=amd64 go build -o release/win-amd64_dimmer.exe --ldflags="-H windowsgui" ./cmd/dimmer
+GOOS=windows GOARCH=amd64 go build -o release/win-amd64_brighter.exe --ldflags="-H windowsgui" ./cmd/brighter
+
+GOOS=windows GOARCH=386 go build -o release/win-386_switch.exe --ldflags="-H windowsgui" ./cmd/switch
+GOOS=windows GOARCH=386 go build -o release/win-386_dimmer.exe --ldflags="-H windowsgui" ./cmd/dimmer
+GOOS=windows GOARCH=386 go build -o release/win-386_brighter.exe --ldflags="-H windowsgui" ./cmd/brighter
+
+GOOS=linux GOARCH=amd64 go build -o release/linux-amd64_switch ./cmd/switch
+GOOS=linux GOARCH=amd64 go build -o release/linux-amd64_dimmer ./cmd/dimmer
+GOOS=linux GOARCH=amd64 go build -o release/linux-amd64_brighter ./cmd/brighter
+
+GOOS=darwin GOARCH=amd64 go build -o release/osx-amd64_switch ./cmd/switch
+GOOS=darwin GOARCH=amd64 go build -o release/osx-amd64_dimmer ./cmd/dimmer
+GOOS=darwin GOARCH=amd64 go build -o release/osx-amd64_brighter ./cmd/brighter
