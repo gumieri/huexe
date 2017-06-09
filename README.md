@@ -4,17 +4,15 @@ A group of executables to turn On / Off (`switch`) and Dim (`dimmer`) / Bright (
 
 ## Installation
 
-Download the package of your Operating System at [hue/releases](https://github.com/gumieri/huexe/releases) and extract it where you prefer.
+1. Download the package of your Operating System at [hue/releases](https://github.com/gumieri/huexe/releases) and extract it where you prefer.
 
-Use the `setup` executable to generate a `config.yml`.
+2. Use the `setup` executable to generate a `config.yml`.
 
-It will search for the Philips Hue Bridge in your network using [meethue.com/api/nupnp](https://www.meethue.com/api/nupnp).
+    It will search for the Philips Hue Bridge in your network using [meethue.com/api/nupnp](https://www.meethue.com/api/nupnp). All the others executables use this same `config.yml`.
 
-All the others executables use this same `config.yml`.
+4. You will need to open this file in a text editor and configure manualy the rest.
 
-You will need to open this file in a text editor and configure manualy the rest.
-
-If you want to control other lamps, create a copy of this instalation and edit the `id` to the desired one.
+  If you want to control other lamps, create a copy of this installation and edit the `id` to the desired one.
 ### Configurations
 
 #### id
@@ -24,11 +22,6 @@ When requesting the API for all Lamps it's the `key` refering the JSON object, w
 It's is **not** the `uniqueid`, `modelid` nor `luminaireuniqueid`.
 #### address
 The Philips Hue Bridge IP Address.
-
-There is many ways to get it, one way is accessing [meethue.com/api/nupnp](https://www.meethue.com/api/nupnp). It wil show the `address` as `internalipaddress`:
-```json
-[{"id":"01890375a60c8f","internalipaddress":"192.168.1.2"}]
-```
 #### username
 It's a Hash Key / Token generated from the Philips Hue Bridge API when registered a Device / User.
 
