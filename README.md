@@ -4,7 +4,7 @@ A group of executables to turn On / Off (`switch`) and Dim (`dimmer`) / Bright (
 
 ## Installation
 
-1. Download the package of your Operating System at [hue/releases](https://github.com/gumieri/huexe/releases) and extract it where you prefer.
+1. Download the package of your Operating System at [huexe/releases](https://github.com/gumieri/huexe/releases) and extract it where you prefer.
 
 2. Use the `setup` executable to generate a `config.yml`.
 
