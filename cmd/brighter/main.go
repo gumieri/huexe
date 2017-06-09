@@ -17,7 +17,7 @@ func main() {
 		return
 	}
 
-	lamp.State.Brightness = lamp.State.Brightness + config.StepSize
+	lamp.State.Brightness = lamp.State.Brightness + config.Steps
 
 	if lamp.State.Brightness > 254 {
 		lamp.State.Brightness = 254
