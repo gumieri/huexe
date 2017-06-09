@@ -11,6 +11,7 @@ type Config struct {
 	Id       int
 	Address  string
 	Username string
+	StepSize int
 }
 
 // GetConfig read the config.yml file in the executable directory and return it
@@ -21,8 +22,12 @@ func GetConfig() (config Config, err error) {
 		return
 	}
 
-	viper.SetConfigName("config")
 	viper.AddConfigPath(dir)
+	viper.SetConfigName("config")
+
+	// Defaults
+	viper.SetDefault("id", 1)
+	viper.SetDefault("step_size", 25)
 
 	err = viper.ReadInConfig()
 
@@ -30,9 +35,9 @@ func GetConfig() (config Config, err error) {
 		return
 	}
 
+	config.Id = viper.GetInt("id")
 	config.Address = viper.GetString("address")
 	config.Username = viper.GetString("username")
-	config.Id = viper.GetInt("id")
 
 	return
 }
