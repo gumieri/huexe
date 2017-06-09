@@ -20,9 +20,6 @@ type Lamp struct {
 }
 
 // GetLamp request to the API for informations about a Hue Lamp
-// id refers to the Lamp ID from the API
-// address refers to the bridge IP Address, the API Address
-// username refers to a hash key/token generated from the API when registered a device/user
 // It returns a Lamp with the current State
 func GetLamp(config Config) (lamp *Lamp, err error) {
 	id := config.Id
@@ -49,9 +46,6 @@ func GetLamp(config Config) (lamp *Lamp, err error) {
 }
 
 // PutLamp update the State of a Hue Lamp using the API
-// id refers to the Lamp ID from the API
-// address refers to the bridge IP Address, the API Address
-// username refers to a hash key/token generated from the API when registered a device/user
 func PutLamp(config Config, lamp *Lamp) (err error) {
 	marshal, err := json.Marshal(lamp.State)
 
