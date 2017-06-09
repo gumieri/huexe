@@ -9,10 +9,10 @@ import (
 
 // Config contain the necessary data to interact with the API
 type Config struct {
-	Id       int    `yaml:id`
-	Address  string `yaml:address`
-	Username string `yaml:username`
-	Steps    int    `yaml:steps`
+	Id       int    `yaml:"id"`
+	Address  string `yaml:"address"`
+	Username string `yaml:"username"`
+	Steps    int    `yaml:"steps"`
 }
 
 func getConfigPath() (configPath string, err error) {
@@ -50,6 +50,7 @@ func GetConfig() (config Config, err error) {
 	return
 }
 
+// SetConfig write te config.yml file from the config parameter
 func SetConfig(config *Config) (err error) {
 	configPath, err := getConfigPath()
 

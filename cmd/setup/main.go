@@ -8,6 +8,7 @@ import (
 	"net/http"
 )
 
+// NUPnP represents the response from the search of a Hue Bridge
 type NUPnP struct {
 	Address string `json:"internalipaddress"`
 }
