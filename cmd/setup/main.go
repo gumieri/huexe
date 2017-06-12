@@ -1,41 +1,34 @@
 package main
 
 import (
-	"encoding/json"
 	"github.com/gumieri/huexe/lib/api"
-	"io/ioutil"
 	"log"
-	"net/http"
 )
 
-// NUPnP represents the response from the search of a Hue Bridge
-type NUPnP struct {
-	Address string `json:"internalipaddress"`
-}
-
 func main() {
-	var err error
+	config := new(api.Config)
 
-	url := "https://www.meethue.com/api/nupnp"
-	response, err := http.Get(url)
+	// Defaults
+	config.Id = 1
+	config.Address = ""
+	config.Steps = 25
+
+	bridgeAddress, err := api.DiscoverBridgeAddress()
+
+	if err != nil {
+		return
+	}
+
+	config.Address = bridgeAddress
+
+	username, err := api.RegisterUser(*config)
 
 	if err != nil {
 		log.Fatal(err)
 		return
 	}
 
-	defer response.Body.Close()
-
-	responseBytes, err := ioutil.ReadAll(response.Body)
-	keys := make([]NUPnP, 0)
-	json.Unmarshal(responseBytes, &keys)
-
-	config := new(api.Config)
-
-	// Defaults
-	config.Id = 1
-	config.Address = keys[0].Address
-	config.Steps = 25
+	config.Username = username
 
 	err = api.SetConfig(config)
 
