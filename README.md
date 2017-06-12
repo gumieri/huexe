@@ -19,7 +19,7 @@ A group of executables to turn On / Off (`switch`) and Dim (`dimmer`) / Bright (
 Refers to the Lamp ID from the Philips Hue Bridge API.
 When requesting the API for all Lamps it's the `key` refering the JSON object, with `state`, `type`, etc..
 
-It's is **not** the `uniqueid`, `modelid` nor `luminaireuniqueid`.
+It is **not** the `uniqueid`, `modelid` nor `luminaireuniqueid`.
 #### address
 The Philips Hue Bridge IP Address.
 #### username
