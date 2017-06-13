@@ -2,7 +2,7 @@ language: go
 go:
 - 1.8.x
 install:
-- go get github.com/spf13/viper
+- go get gopkg.in/yaml.v2
 script:
 - "./build"
 deploy:
