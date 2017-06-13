@@ -8,28 +8,33 @@ import (
 	"net/http"
 )
 
+// User is used to register a new username
 type User struct {
-	deviceType string `json:"devicetype"`
+	DeviceType string `json:"devicetype"`
 }
 
+// RegisterError represent the data from a failed RegisterResponse
 type RegisterError struct {
 	ErrorType   int    `json:"type"`
 	Address     string `json:"address"`
 	Description string `json:"description"`
 }
 
+// RegisterSuccess represent the data from a succeeded RegisterResponse
 type RegisterSuccess struct {
 	Username string `json:"username"`
 }
 
+// RegisterResponse represent the response from registering a username
 type RegisterResponse struct {
 	ErrorData   RegisterError   `json:"error"`
 	SuccessData RegisterSuccess `json:"success"`
 }
 
+// RegisterUser ask for Philips Hue Bridge to register a new username
 func RegisterUser(config Config) (username string, err error) {
 	user := new(User)
-	user.deviceType = "Huexe"
+	user.DeviceType = "Huexe"
 
 	marshal, err := json.Marshal(user)
 
@@ -69,10 +74,11 @@ func RegisterUser(config Config) (username string, err error) {
 	return
 }
 
+// UnregisterUser delete the username on config from the Philips Hue Bridge
 func UnregisterUser(config Config) (err error) {
 	urlS := "http://%s/api/%s/config/whitelist/%s"
 	url := fmt.Sprintf(urlS, config.Address, config.Username, config.Username)
-	request, err := http.NewRequest(http.MethodPut, url, nil)
+	request, err := http.NewRequest(http.MethodDelete, url, nil)
 
 	if err != nil {
 		return

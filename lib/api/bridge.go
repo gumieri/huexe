@@ -11,6 +11,7 @@ type NUPnP struct {
 	Address string `json:"internalipaddress"`
 }
 
+// DiscoverBridgeAddress use meethue.com/api/nupnp to find the Philips Hue Bridge locally
 func DiscoverBridgeAddress() (address string, err error) {
 	url := "https://www.meethue.com/api/nupnp"
 	response, err := http.Get(url)
